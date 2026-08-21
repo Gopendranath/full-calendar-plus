@@ -1,6 +1,6 @@
 {
     "name": "full-calendar-plus",
-    "version": "0.10.8",
+    "version": "0.10.9",
     "description": "Full Calendar Plus - Extended Obsidian Full Calendar with multiMonthYear and custom views",
     "main": "main.js",
     "scripts": {

@@ -1,7 +1,7 @@
 {
 	"id": "full-calendar-plus",
 	"name": "Full Calendar Plus",
-	"version": "0.10.8",
+	"version": "0.10.9",
 	"minAppVersion": "0.16.3",
 	"description": "Full Calendar Plus - Extended Obsidian Full Calendar with multiMonthYear and custom views",
 	"author": "Gopendranath",
