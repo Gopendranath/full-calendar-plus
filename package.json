@@ -21,9 +21,8 @@
         "url": "https://github.com/Gopendranath/full-calendar-plus"
     },
     "author": {
-        "name": "Davis Haupt",
-        "email": "contact@davishaupt.com",
-        "url": "https://davi.sh"
+        "name": "Gopendranath",
+        "url": "https://github.com/Gopendranath"
     },
     "license": "MIT",
     "devDependencies": {
