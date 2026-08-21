@@ -24,4 +24,8 @@ main.css
 data.json
 .obsidian
 
+# local test vault (created by pnpm run vault)
+test-vault/
+vault/
+
 .DS_Store

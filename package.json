@@ -13,7 +13,10 @@
         "prepare": "husky install",
         "test": "jest --ci --silent=true",
         "test-dev": "jest --watch",
-        "coverage": "jest --coverage"
+        "coverage": "jest --coverage",
+        "vault": "node scripts/setup-test-vault.mjs",
+        "vault:build": "pnpm run build && node scripts/setup-test-vault.mjs",
+        "vault:dev": "pnpm run vault:build && echo \"Open ./test-vault as vault in Obsidian. Run pnpm run dev for watch mode, then pnpm run vault on each rebuild.\""
     },
     "keywords": [],
     "repository": {
