@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import { getEventsFromICS } from "./ics";
 
 describe("ics tests", () => {

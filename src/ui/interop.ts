@@ -45,8 +45,8 @@ const normalizeTimeString = (time: string): string | null => {
 };
 
 const add = (date: DateTime, time: Duration): DateTime => {
-    let hours = time.hours;
-    let minutes = time.minutes;
+    const hours = time.hours;
+    const minutes = time.minutes;
     return date.set({ hour: hours, minute: minutes });
 };
 

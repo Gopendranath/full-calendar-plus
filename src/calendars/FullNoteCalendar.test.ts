@@ -1,4 +1,5 @@
-import { join } from "path";
+import { posix } from "path";
+const { join } = posix;
 import { TFile } from "obsidian";
 
 import { ObsidianInterface } from "src/ObsidianAdapter";

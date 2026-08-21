@@ -12,7 +12,8 @@ import {
     UserEvent,
     Workspace,
 } from "obsidian";
-import { join } from "path";
+import { posix } from "path";
+const { join } = posix;
 import { FileBuilder } from "./FileBuilder";
 import { MockVault } from "./MockVault";
 
@@ -39,7 +40,7 @@ export class MockCache implements MetadataCache {
     fileToLinktext(
         file: TFile,
         sourcePath: string,
-        omitMdExtension?: boolean | undefined
+        omitMdExtension?: boolean | undefined,
     ): string {
         throw new Error("Method not implemented.");
     }
@@ -48,19 +49,19 @@ export class MockCache implements MetadataCache {
     on(
         name: "changed",
         callback: (file: TFile, data: string, cache: CachedMetadata) => any,
-        ctx?: any
+        ctx?: any,
     ): EventRef;
     on(
         name: "deleted",
         callback: (file: TFile, prevCache: CachedMetadata | null) => any,
-        ctx?: any
+        ctx?: any,
     ): EventRef;
     on(name: "resolve", callback: (file: TFile) => any, ctx?: any): EventRef;
     on(name: "resolved", callback: () => any, ctx?: any): EventRef;
     on(
         name: unknown,
         callback: unknown,
-        ctx?: unknown
+        ctx?: unknown,
     ): import("obsidian").EventRef {
         throw new Error("Method not implemented.");
     }
@@ -103,7 +104,7 @@ function toPathMap<T>(tree: FileTree<T>): Map<string, T> {
         Object.entries(t).flatMap(([name, v]) =>
             v.t === "file"
                 ? [[join(path, name), v.v]]
-                : recurse(v.v, join(path, name))
+                : recurse(v.v, join(path, name)),
         );
     return new Map(recurse(tree, "/"));
 }
@@ -122,7 +123,7 @@ export class MockAppBuilder {
         path: string,
         children: TAbstractFile[] = [],
         contents: FileTree<string> = {},
-        metadata: FileTree<CachedMetadata> = {}
+        metadata: FileTree<CachedMetadata> = {},
     ) {
         this.path = join("/", path);
         this.children = children;
@@ -140,7 +141,7 @@ export class MockAppBuilder {
             this.path,
             [...this.children, file],
             { ...this.contents, [filename]: { t: "file", v: contents } },
-            { ...this.metadata, [filename]: { t: "file", v: metadata } }
+            { ...this.metadata, [filename]: { t: "file", v: metadata } },
         );
     }
 
@@ -149,7 +150,7 @@ export class MockAppBuilder {
             this.path,
             [...this.children, f.makeFolder()],
             { ...this.contents, [f.path]: { t: "folder", v: f.contents } },
-            { ...this.metadata, [f.path]: { t: "folder", v: f.metadata } }
+            { ...this.metadata, [f.path]: { t: "folder", v: f.metadata } },
         );
     }
 
@@ -164,7 +165,7 @@ export class MockAppBuilder {
     done(): MockApp {
         return new MockApp(
             new MockVault(this.makeFolder(), toPathMap(this.contents)),
-            new MockCache(toPathMap(this.metadata))
+            new MockCache(toPathMap(this.metadata)),
         );
     }
 }

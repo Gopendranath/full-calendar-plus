@@ -94,8 +94,8 @@ const getListsUnderHeading = (
     );
 };
 
-const listRegex = /^(\s*)\-\s+(\[(.)\]\s+)?/;
-const checkboxRegex = /^\s*\-\s+\[(.)\]\s+/;
+const listRegex = /^(\s*)-\s+(\[(.)\]\s+)?/;
+const checkboxRegex = /^\s*-\s+\[(.)\]\s+/;
 const checkboxTodo = (s: string) => {
     const match = s.match(checkboxRegex);
     if (!match || !match[1]) {
@@ -154,10 +154,7 @@ const generateInlineAttributes = (attrs: Record<string, any>): string => {
         .join("  ");
 };
 
-const makeListItem = (
-    data: OFCEvent,
-    whitespacePrefix: string = ""
-): string => {
+const makeListItem = (data: OFCEvent, whitespacePrefix = ""): string => {
     if (data.type !== "single") {
         throw new Error("Can only pass in single event.");
     }
@@ -217,7 +214,7 @@ const addToHeading = (
     page: string,
     { heading, item, headingText }: AddToHeadingProps
 ): { page: string; lineNumber: number } => {
-    let lines = page.split("\n");
+    const lines = page.split("\n");
 
     const listItem = makeListItem(item);
     if (heading) {
@@ -311,7 +308,7 @@ export default class DailyNoteCalendar extends EditableCalendar {
                 `Could not find heading ${this.heading} in daily note ${file.path}.`
             );
         }
-        let lineNumber = await this.app.rewrite(file, (contents) => {
+        const lineNumber = await this.app.rewrite(file, (contents) => {
             const { page, lineNumber } = addToHeading(contents, {
                 heading: headingInfo,
                 item: event,
@@ -339,7 +336,7 @@ export default class DailyNoteCalendar extends EditableCalendar {
     async deleteEvent(loc: EventPathLocation): Promise<void> {
         const { file, lineNumber } = this.getConcreteLocation(loc);
         this.app.rewrite(file, (contents) => {
-            let lines = contents.split("\n");
+            const lines = contents.split("\n");
             lines.splice(lineNumber, 1);
             return lines.join("\n");
         });
@@ -396,7 +393,7 @@ export default class DailyNoteCalendar extends EditableCalendar {
 
             await this.app.rewrite(file, async (oldFileContents) => {
                 // Open the old file and remove the event.
-                let lines = oldFileContents.split("\n");
+                const lines = oldFileContents.split("\n");
                 lines.splice(lineNumber, 1);
                 await this.app.rewrite(newFile, (newFileContents) => {
                     // Before writing that change back to disk, open the new file and add the event.

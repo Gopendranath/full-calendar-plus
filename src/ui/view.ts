@@ -105,7 +105,7 @@ export class CalendarView extends ItemView {
 
         const container = this.containerEl.children[1];
         container.empty();
-        let calendarEl = container.createEl("div");
+        const calendarEl = container.createEl("div");
 
         if (
             this.plugin.settings.calendarSources.filter(
@@ -205,7 +205,9 @@ export class CalendarView extends ItemView {
                             sourcePath: location.path,
                         });
                     }
-                } catch (e) {}
+                } catch (_e) {
+                    // ignore hover-link errors
+                }
             },
             firstDay: this.plugin.settings.firstDay,
             initialView: this.plugin.settings.initialView,

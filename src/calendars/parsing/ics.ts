@@ -19,8 +19,9 @@ function getTime(t: ical.Time): string {
     });
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function extractEventUrl(iCalEvent: ical.Event): string {
-    let urlProp = iCalEvent.component.getFirstProperty("url");
+    const urlProp = iCalEvent.component.getFirstProperty("url");
     return urlProp ? urlProp.getFirstValue() : "";
 }
 

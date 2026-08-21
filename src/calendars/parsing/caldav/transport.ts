@@ -51,18 +51,18 @@ export class Basic extends transport.Transport {
     ): Promise<any> {
         return co(
             function* (this: Basic) {
-                let sandbox = options && options.sandbox;
-                let transformRequest = request.transformRequest;
-                let transformResponse = request.transformResponse;
-                let onerror = request.onerror;
+                const sandbox = options && options.sandbox;
+                const transformRequest = request.transformRequest;
+                const transformResponse = request.transformResponse;
+                const onerror = request.onerror;
 
-                let requestBridge = new RequestBridge(this.credentials);
+                const requestBridge = new RequestBridge(this.credentials);
                 if (sandbox) sandbox.add(requestBridge);
                 if (transformRequest) transformRequest(requestBridge);
 
                 let result;
                 try {
-                    let response = makeRequest({
+                    const response = makeRequest({
                         url: url,
                         method: request.method,
                         contentType: requestBridge.contentType,

@@ -28,23 +28,23 @@ export default class CalDAVCalendar extends RemoteCalendar {
     }
 
     async revalidate(): Promise<void> {
-        let xhr = new transport.Basic(
+        const xhr = new transport.Basic(
             new dav.Credentials({
                 username: this.credentials.username,
                 password: this.credentials.password,
             })
         );
-        let account = await dav.createAccount({
+        const account = await dav.createAccount({
             xhr: xhr,
             server: this.serverUrl,
         });
-        let calendar = account.calendars.find(
+        const calendar = account.calendars.find(
             (calendar) => calendar.url === this.calendarUrl
         );
         if (!calendar) {
             return;
         }
-        let caldavEvents = await dav.listCalendarObjects(calendar, { xhr });
+        const caldavEvents = await dav.listCalendarObjects(calendar, { xhr });
         this.events = caldavEvents
             .filter((vevent) => vevent.calendarData)
             .flatMap((vevent) => getEventsFromICS(vevent.calendarData));

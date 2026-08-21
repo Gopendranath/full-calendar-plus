@@ -1,4 +1,4 @@
-import { MarkdownView, Notice, Plugin, TFile } from "obsidian";
+import { Notice, Plugin, TFile } from "obsidian";
 import {
     CalendarView,
     FULL_CALENDAR_SIDEBAR_VIEW_TYPE,

@@ -5,6 +5,7 @@ import { App, Modal } from "obsidian";
 type RenderCallback = (
     close: () => void
 ) => Promise<ReturnType<typeof React.createElement>>;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default class ReactModal<Props, Component> extends Modal {
     onOpenCallback: RenderCallback;
 

@@ -111,7 +111,7 @@ export class ObsidianIO implements ObsidianInterface {
     fileManager: FileManager;
     systemTrash: boolean;
 
-    constructor(app: App, systemTrash: boolean = true) {
+    constructor(app: App, systemTrash = true) {
         this.vault = app.vault;
         this.metadataCache = app.metadataCache;
         this.fileManager = app.fileManager;

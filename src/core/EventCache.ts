@@ -104,7 +104,7 @@ export default class EventCache {
 
     initialized = false;
 
-    lastRevalidation: number = 0;
+    lastRevalidation = 0;
 
     constructor(calendarInitializers: CalendarInitializerMap) {
         this.calendarInitializers = calendarInitializers;
@@ -558,9 +558,7 @@ export default class EventCache {
                 .revalidate()
                 .then(() => calendar.getEvents())
                 .then((events) => {
-                    const deletedEvents = [
-                        ...this.store.deleteEventsInCalendar(calendar),
-                    ];
+                    [...this.store.deleteEventsInCalendar(calendar)];
                     const newEvents = events.map(([event, location]) => ({
                         event,
                         id: event.id || this.generateId(),

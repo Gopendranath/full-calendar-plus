@@ -95,7 +95,7 @@ export function addCalendarButton(
             button.setTooltip("Add Calendar");
             button.setIcon("plus-with-circle");
             button.onClick(() => {
-                let modal = new ReactModal(app, async () => {
+                const modal = new ReactModal(app, async () => {
                     await plugin.loadSettings();
                     const usedDirectories = (
                         listUsedDirectories
@@ -135,7 +135,7 @@ export function addCalendarButton(
                         submit: async (source: CalendarInfo) => {
                             if (source.type === "caldav") {
                                 try {
-                                    let sources = await importCalendars(
+                                    const sources = await importCalendars(
                                         {
                                             type: "basic",
                                             username: source.username,
@@ -262,7 +262,7 @@ export class FullCalendarSettingTab extends PluginSettingTab {
 
         const sourcesDiv = containerEl.createDiv();
         sourcesDiv.style.display = "block";
-        let sourceList = ReactDOM.render(
+        const sourceList = ReactDOM.render(
             createElement(CalendarSettings, {
                 sources: this.plugin.settings.calendarSources,
                 submit: async (settings: CalendarInfo[]) => {

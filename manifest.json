@@ -1,10 +1,10 @@
 {
-	"id": "obsidian-full-calendar",
-	"name": "Full Calendar",
+	"id": "full-calendar-plus",
+	"name": "Full Calendar Plus",
 	"version": "0.10.7",
 	"minAppVersion": "0.16.3",
-	"description": "Obsidian integration with Full Calendar (fullcalendar.io)",
-	"author": "Davis Haupt",
+	"description": "Full Calendar Plus - Extended Obsidian Full Calendar with multiMonthYear and custom views",
+	"author": "Davis Haupt (Plus mod)",
 	"authorUrl": "https://davi.sh",
 	"isDesktopOnly": false,
 	"fundingUrl": "https://ko-fi.com/davish"

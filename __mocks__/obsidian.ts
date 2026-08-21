@@ -1,4 +1,6 @@
-import { basename, extname, join as pathJoin } from "path";
+import { posix } from "path";
+const { basename, extname } = posix;
+const pathJoin = posix.join;
 
 /** Basic obsidian abstraction for any file or folder in a vault. */
 export abstract class TAbstractFile {

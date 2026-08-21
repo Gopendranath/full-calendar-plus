@@ -1,6 +1,7 @@
 import { z, ZodError } from "zod";
-import { DateTime, Duration } from "luxon";
+import { DateTime } from "luxon";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const stripTime = (date: DateTime) => {
     // Strip time from luxon dateTime.
     return DateTime.fromObject(

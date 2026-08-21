@@ -7,7 +7,8 @@ import {
     TFolder,
     Vault,
 } from "obsidian";
-import { basename, dirname, join, normalize } from "path";
+import { posix } from "path";
+const { basename, dirname, join, normalize } = posix;
 
 /**
  * Return all files that exist under a given folder.
@@ -49,7 +50,7 @@ export class MockVault implements Vault {
         const normalizedPath = join("/", normalize(path));
         return (
             this.getAllLoadedFiles().find(
-                (f) => join("/", normalize(f.path)) === normalizedPath
+                (f) => join("/", normalize(f.path)) === normalizedPath,
             ) || null
         );
     }
@@ -70,13 +71,13 @@ export class MockVault implements Vault {
 
     getFiles(): TFile[] {
         return this.getAllLoadedFiles().flatMap((f) =>
-            f instanceof TFile ? f : []
+            f instanceof TFile ? f : [],
         );
     }
 
     getMarkdownFiles(): TFile[] {
         return this.getFiles().filter(
-            (f) => f.extension.toLowerCase() === "md"
+            (f) => f.extension.toLowerCase() === "md",
         );
     }
 
@@ -93,7 +94,7 @@ export class MockVault implements Vault {
     async create(
         path: string,
         data: string,
-        options?: DataWriteOptions | undefined
+        options?: DataWriteOptions | undefined,
     ): Promise<TFile> {
         if (this.getAbstractFileByPath(path)) {
             throw new Error("File already exists.");
@@ -111,7 +112,7 @@ export class MockVault implements Vault {
     }
     async delete(
         file: TAbstractFile,
-        force?: boolean | undefined
+        force?: boolean | undefined,
     ): Promise<void> {
         file.parent.children.remove(file);
     }
@@ -153,7 +154,7 @@ export class MockVault implements Vault {
                     const contents = this.contents.get(f.path);
                     if (!contents) {
                         throw new Error(
-                            `File did not have contents: ${f.path}`
+                            `File did not have contents: ${f.path}`,
                         );
                     }
                     this.contents.delete(f.path);
@@ -176,7 +177,7 @@ export class MockVault implements Vault {
     async modify(
         file: TFile,
         data: string,
-        options?: DataWriteOptions | undefined
+        options?: DataWriteOptions | undefined,
     ): Promise<void> {
         this.contents.set(file.path, data);
     }
@@ -190,22 +191,22 @@ export class MockVault implements Vault {
     on(
         name: "create",
         callback: (file: TAbstractFile) => any,
-        ctx?: any
+        ctx?: any,
     ): EventRef;
     on(
         name: "modify",
         callback: (file: TAbstractFile) => any,
-        ctx?: any
+        ctx?: any,
     ): EventRef;
     on(
         name: "delete",
         callback: (file: TAbstractFile) => any,
-        ctx?: any
+        ctx?: any,
     ): EventRef;
     on(
         name: "rename",
         callback: (file: TAbstractFile, oldPath: string) => any,
-        ctx?: any
+        ctx?: any,
     ): EventRef;
     on(name: "closed", callback: () => any, ctx?: any): EventRef;
     on(name: unknown, callback: unknown, ctx?: unknown): EventRef {
@@ -226,7 +227,7 @@ export class MockVault implements Vault {
     append(
         file: TFile,
         data: string,
-        options?: DataWriteOptions | undefined
+        options?: DataWriteOptions | undefined,
     ): Promise<void> {
         throw new Error("Method not implemented.");
     }
@@ -234,7 +235,7 @@ export class MockVault implements Vault {
     createBinary(
         path: string,
         data: ArrayBuffer,
-        options?: DataWriteOptions | undefined
+        options?: DataWriteOptions | undefined,
     ): Promise<TFile> {
         throw new Error("Method not implemented.");
     }
@@ -245,7 +246,7 @@ export class MockVault implements Vault {
     modifyBinary(
         file: TFile,
         data: ArrayBuffer,
-        options?: DataWriteOptions | undefined
+        options?: DataWriteOptions | undefined,
     ): Promise<void> {
         throw new Error("Method not implemented.");
     }

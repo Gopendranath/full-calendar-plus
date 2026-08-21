@@ -170,7 +170,7 @@ export default class FullNoteCalendar extends EditableCalendar {
 
     async getEventsInFile(file: TFile): Promise<EditableEventResponse[]> {
         const metadata = this.app.getMetadata(file);
-        let event = validateEvent(metadata?.frontmatter);
+        const event = validateEvent(metadata?.frontmatter);
         if (!event) {
             return [];
         }

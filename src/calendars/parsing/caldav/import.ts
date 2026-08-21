@@ -8,20 +8,20 @@ export async function importCalendars(
     url: string
 ): Promise<CalDAVSource[]> {
     try {
-        let xhr = new transport.Basic(
+        const xhr = new transport.Basic(
             new dav.Credentials({
                 username: auth.username,
                 password: auth.password,
             })
         );
-        let account = await dav.createAccount({
+        const account = await dav.createAccount({
             xhr: xhr,
             server: url,
             loadObjects: false,
             loadCollections: true,
         });
 
-        let colorRequest = dav.request.propfind({
+        const colorRequest = dav.request.propfind({
             props: [{ name: "calendar-color", namespace: dav.ns.CALDAV_APPLE }],
             depth: "0",
         });
@@ -31,8 +31,11 @@ export async function importCalendars(
                 if (!calendar.components.includes("VEVENT")) {
                     return null;
                 }
-                let colorResponse = await xhr.send(colorRequest, calendar.url);
-                let color = colorResponse[0].props?.calendarColor;
+                const colorResponse = await xhr.send(
+                    colorRequest,
+                    calendar.url
+                );
+                const color = colorResponse[0].props?.calendarColor;
                 return {
                     name: calendar.displayName,
                     url: calendar.url,

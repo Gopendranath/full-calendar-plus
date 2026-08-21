@@ -185,7 +185,7 @@ export function renderCalendar(
                     checkbox.onclick = async (e) => {
                         e.stopPropagation();
                         if (e.target) {
-                            let ret = await toggleTask(
+                            const ret = await toggleTask(
                                 event,
                                 (e.target as HTMLInputElement).checked
                             );
