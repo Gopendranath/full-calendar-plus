@@ -56,6 +56,7 @@ const INITIAL_VIEW_OPTIONS = {
         timeGridDay: "Day",
         timeGridWeek: "Week",
         dayGridMonth: "Month",
+        multiMonthYear: "Year",
         listWeek: "List",
     },
     MOBILE: {

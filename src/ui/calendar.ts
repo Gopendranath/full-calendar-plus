@@ -113,7 +113,7 @@ export function renderCalendar(
             ? {
                   left: "prev,next today",
                   center: "title",
-                  right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+                  right: "dayGridMonth,multiMonthYear,timeGridWeek,timeGridDay,listWeek",
               }
             : !isMobile
             ? {
@@ -138,6 +138,12 @@ export function renderCalendar(
                 type: "timeGrid",
                 duration: { days: 3 },
                 buttonText: "3",
+            },
+            multiMonthYear: {
+                type: "dayGridMonth",
+                duration: { months: 12 },
+                buttonText: "year",
+                titleFormat: { year: "numeric" },
             },
         },
         firstDay: settings?.firstDay,

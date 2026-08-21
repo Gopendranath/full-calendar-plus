@@ -146,8 +146,11 @@ export class CalendarView extends ItemView {
                 }
             },
             select: async (start, end, allDay, viewType) => {
-                if (viewType === "dayGridMonth") {
-                    // Month view will set the end day to the next day even on a single-day event.
+                if (
+                    viewType === "dayGridMonth" ||
+                    viewType === "multiMonthYear"
+                ) {
+                    // Month/year views will set the end day to the next day even on a single-day event.
                     // This is problematic when moving an event created in the month view to the
                     // time grid to give it a time.
 
@@ -162,7 +165,8 @@ export class CalendarView extends ItemView {
                 try {
                     if (
                         this.plugin.settings.clickToCreateEventFromMonthView ||
-                        viewType !== "dayGridMonth"
+                        (viewType !== "dayGridMonth" &&
+                            viewType !== "multiMonthYear")
                     ) {
                         launchCreateModal(this.plugin, partialEvent);
                     } else {
