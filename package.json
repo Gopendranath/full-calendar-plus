@@ -16,6 +16,10 @@
         "coverage": "jest --coverage"
     },
     "keywords": [],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Gopendranath/full-calendar-plus"
+    },
     "author": {
         "name": "Davis Haupt",
         "email": "contact@davishaupt.com",
